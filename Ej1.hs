@@ -152,11 +152,3 @@ evensS (Stream next s) = Stream next' s
         Yield b s'' -> Yield b s''
         Skip s'' -> Skip s''
       Skip s' -> Skip s'
-
-filterS :: (a -> Bool) -> Stream a -> Stream a
-filterS p (Stream next s) = Stream next' s
-  where
-    next' s = case next s of
-      Done -> Done
-      Yield a s' -> if p a then Yield a s' else Skip s'
-      Skip s' -> Skip s'
