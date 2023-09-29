@@ -39,8 +39,6 @@ data DMarkup = Text String
             | DMarkup :<-> DMarkup
             | DMarkup :<+> DMarkup
 
--- Directivas
-
 instance EDSL_Markup DMarkup where
         text str = Text str
         bold m = Bold m
