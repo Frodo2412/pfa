@@ -1,5 +1,5 @@
 
-import Data.Char (chr, ord, toLower, toUpper)
+import Data.Char (chr, ord, toLower, toUpper, isAscii)
 import Data.Text qualified as Text
 import Data.Text.IO qualified as Text.IO
 import Data.Text.Lazy qualified as Text.Lazy
@@ -7,9 +7,6 @@ import Data.Text.Lazy.IO qualified as Text.Lazy.IO
 
 hash :: Char -> Char -> Char
 hash z c = chr $ (ord z + ord c) `mod` 128
-
-isAscii :: Char -> Bool
-isAscii c = ord c < 128
 
 encode :: String -> String -> IO ()
 encode inputName outputName = do
