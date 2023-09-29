@@ -15,13 +15,13 @@ encode inputName outputName = do
   let removedLastChar = init removeFirstChar
   let onlyAscii = filter isAscii removedLastChar
   let allUperCase = map toUpper onlyAscii
-  let superHash = hashIt (p : (tail allUperCase))
+  let superHash = hashIt (p : tail allUperCase)
   let allLowerCase = map toLower superHash
   writeFile outputName allLowerCase
 
 hashIt []        = []
 hashIt [x]       = [x]
-hashIt (x:y:xs)  = [x] ++ hashIt (hash x y : xs)
+hashIt (x:y:xs)  = x : hashIt (hash x y : xs)
 
 encodeStrict :: String -> String -> IO ()
 encodeStrict inputName outputName = do
