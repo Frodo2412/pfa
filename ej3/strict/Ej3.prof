@@ -1,0 +1,46 @@
+	Sat Sep 30 18:15 2023 Time and Allocation Profiling Report  (Final)
+
+	   Ej3 +RTS -p -hc -RTS
+
+	total time  =        0.11 secs   (112 ticks @ 1000 us, 1 processor)
+	total alloc =  67,191,672 bytes  (excludes profiling overheads)
+
+COST CENTRE               MODULE                SRC                                                    %time %alloc
+
+encodeStrict.allLowerCase Main                  Ej3.hs:35:7-47                                          34.8    1.5
+encodeStrict.allUperCase  Main                  Ej3.hs:33:7-46                                          33.9    1.5
+encodeStrict              Main                  Ej3.hs:(27,1)-(36,43)                                   10.7    7.2
+encodeStrict.superHash    Main                  Ej3.hs:34:7-59                                           8.9   62.1
+encodeStrict.onlyAscii    Main                  Ej3.hs:32:7-53                                           4.5    3.1
+readTextDevice            Data.Text.Internal.IO libraries/text/src/Data/Text/Internal/IO.hs:133:39-64    2.7    0.4
+hash                      Main                  Ej3.hs:9:1-42                                            2.7   24.2
+CAF                       GHC.IO.Encoding.Iconv <entire-module>                                          1.8    0.0
+
+
+                                                                                                                                 individual      inherited
+COST CENTRE                     MODULE                  SRC                                                   no.     entries  %time %alloc   %time %alloc
+
+MAIN                            MAIN                    <built-in>                                            205           0    0.0    0.0   100.0  100.0
+ CAF                            Main                    <entire-module>                                       409           0    0.0    0.0     0.0    0.0
+  main                          Main                    Ej3.hs:(51,1)-(52,60)                                 410           1    0.0    0.0     0.0    0.0
+   encodeStrict                 Main                    Ej3.hs:(27,1)-(36,43)                                 411           1    0.0    0.0     0.0    0.0
+ CAF                            Data.Text.Array         <entire-module>                                       407           0    0.0    0.0     0.0    0.0
+ CAF                            Data.Text.IO            <entire-module>                                       404           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.Conc.Signal         <entire-module>                                       317           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.IO.Encoding         <entire-module>                                       299           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.IO.Encoding.Iconv   <entire-module>                                       297           0    1.8    0.0     1.8    0.0
+ CAF                            GHC.IO.Exception        <entire-module>                                       291           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.IO.FD               <entire-module>                                       290           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.IO.Handle.FD        <entire-module>                                       288           0    0.0    0.1     0.0    0.1
+ CAF                            GHC.IO.Handle.Internals <entire-module>                                       287           0    0.0    0.0     0.0    0.0
+ main                           Main                    Ej3.hs:(51,1)-(52,60)                                 412           0    0.0    0.0    98.2   99.9
+  encodeStrict                  Main                    Ej3.hs:(27,1)-(36,43)                                 413           0   10.7    7.2    98.2   99.9
+   readTextDevice               Data.Text.Internal.IO   libraries/text/src/Data/Text/Internal/IO.hs:133:39-64 414         519    2.7    0.4     2.7    0.4
+   encodeStrict.allLowerCase    Main                    Ej3.hs:35:7-47                                        422           1   34.8    1.5    34.8    1.5
+   encodeStrict.allUperCase     Main                    Ej3.hs:33:7-46                                        418           1   33.9    1.5    33.9    1.5
+   encodeStrict.onlyAscii       Main                    Ej3.hs:32:7-53                                        417           1    4.5    3.1     4.5    3.1
+   encodeStrict.p               Main                    Ej3.hs:29:7-25                                        419           1    0.0    0.0     0.0    0.0
+   encodeStrict.removeFirstChar Main                    Ej3.hs:30:7-39                                        415           1    0.0    0.0     0.0    0.0
+   encodeStrict.removedLastChar Main                    Ej3.hs:31:7-49                                        416           1    0.0    0.0     0.0    0.0
+   encodeStrict.superHash       Main                    Ej3.hs:34:7-59                                        420           1    8.9   62.1    11.6   86.3
+    hash                        Main                    Ej3.hs:9:1-42                                         421     1016904    2.7   24.2     2.7   24.2

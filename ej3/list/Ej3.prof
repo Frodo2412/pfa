@@ -1,0 +1,44 @@
+	Sat Sep 30 18:14 2023 Time and Allocation Profiling Report  (Final)
+
+	   Ej3 +RTS -p -hc -RTS
+
+	total time  =        0.17 secs   (169 ticks @ 1000 us, 1 processor)
+	total alloc = 507,293,392 bytes  (excludes profiling overheads)
+
+COST CENTRE            MODULE SRC                    %time %alloc
+
+encode.allLowerCase    Main   Ej3.hs:19:7-42          40.2   20.8
+encode.allUperCase     Main   Ej3.hs:17:7-41          19.5   20.8
+encode                 Main   Ej3.hs:(12,1)-(20,35)   14.2    8.3
+hashIt                 Main   Ej3.hs:(22,1)-(24,45)   11.2   24.1
+hash                   Main   Ej3.hs:9:1-42            5.3    3.2
+encode.removedLastChar Main   Ej3.hs:15:7-44           5.3   11.5
+encode.onlyAscii       Main   Ej3.hs:16:7-48           4.1   11.2
+
+
+                                                                                           individual      inherited
+COST CENTRE               MODULE                  SRC                   no.     entries  %time %alloc   %time %alloc
+
+MAIN                      MAIN                    <built-in>            127           0    0.0    0.0   100.0  100.0
+ CAF                      Main                    <entire-module>       253           0    0.0    0.0     0.0    0.0
+  main                    Main                    Ej3.hs:(51,1)-(52,54) 254           1    0.0    0.0     0.0    0.0
+   encode                 Main                    Ej3.hs:(12,1)-(20,35) 255           1    0.0    0.0     0.0    0.0
+ CAF                      GHC.Conc.Signal         <entire-module>       231           0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Encoding         <entire-module>       213           0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Encoding.Iconv   <entire-module>       211           0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Exception        <entire-module>       205           0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.FD               <entire-module>       204           0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Handle.FD        <entire-module>       202           0    0.0    0.0     0.0    0.0
+ CAF                      GHC.IO.Handle.Internals <entire-module>       201           0    0.0    0.0     0.0    0.0
+ main                     Main                    Ej3.hs:(51,1)-(52,54) 256           0    0.0    0.0   100.0  100.0
+  encode                  Main                    Ej3.hs:(12,1)-(20,35) 257           0   14.2    8.3   100.0  100.0
+   encode.(...)           Main                    Ej3.hs:14:7-35        258           1    0.0    0.0     0.0    0.0
+   encode.allLowerCase    Main                    Ej3.hs:19:7-42        265           1   40.2   20.8    40.2   20.8
+   encode.allUperCase     Main                    Ej3.hs:17:7-41        262           1   19.5   20.8    19.5   20.8
+   encode.onlyAscii       Main                    Ej3.hs:16:7-48        261           1    4.1   11.2     4.1   11.2
+   encode.p               Main                    Ej3.hs:14:7-35        266           1    0.0    0.0     0.0    0.0
+   encode.removeFirstChar Main                    Ej3.hs:14:7-35        259           1    0.0    0.0     0.0    0.0
+   encode.removedLastChar Main                    Ej3.hs:15:7-44        260           1    5.3   11.5     5.3   11.5
+   encode.superHash       Main                    Ej3.hs:18:7-47        263           1    0.0    0.0    16.6   27.3
+    hashIt                Main                    Ej3.hs:(22,1)-(24,45) 264     1016905   11.2   24.1    16.6   27.3
+     hash                 Main                    Ej3.hs:9:1-42         267     1016904    5.3    3.2     5.3    3.2
