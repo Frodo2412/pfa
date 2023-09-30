@@ -1,0 +1,24 @@
+JOB "Ej3 +RTS -p -hc"
+DATE "Sat Sep 30 18:16 2023"
+SAMPLE_UNIT "seconds"
+VALUE_UNIT "bytes"
+BEGIN_SAMPLE 0.000000
+END_SAMPLE 0.000000
+BEGIN_SAMPLE 0.109412
+(218)SYSTEM	32880
+(423)Main.CAF	960
+MAIN	160
+(324)GHC.Conc.Signal.CAF	640
+(304)GHC.IO.Encoding.Iconv.CAF	120
+(306)GHC.IO.Encoding.CAF	912
+(429)readTextDevice/encode...	232
+(431)encodeLazy.removedLas...	48
+(432)encodeLazy.onlyAscii/...	24
+(433)encodeLazy.allUperCas...	2104
+(439)encodeLazy.allLowerCa...	16
+(437)unstreamChunks/inner/...	56
+(427)encodeLazy/main	44656
+(436)unstreamChunks/resize...	8208
+END_SAMPLE 0.109412
+BEGIN_SAMPLE 0.144953
+END_SAMPLE 0.144953

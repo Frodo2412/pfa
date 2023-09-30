@@ -1,0 +1,48 @@
+	Sat Sep 30 18:16 2023 Time and Allocation Profiling Report  (Final)
+
+	   Ej3 +RTS -p -hc -RTS
+
+	total time  =        0.13 secs   (129 ticks @ 1000 us, 1 processor)
+	total alloc = 132,495,800 bytes  (excludes profiling overheads)
+
+COST CENTRE             MODULE                         SRC                                                                   %time %alloc
+
+encodeLazy.allLowerCase Main                           Ej3.hs:47:7-52                                                         37.2    0.8
+encodeLazy.allUperCase  Main                           Ej3.hs:45:7-51                                                         31.8    0.8
+unstreamChunks/inner    Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(88,17)-(92,59)   14.7   79.8
+encodeLazy              Main                           Ej3.hs:(39,1)-(48,48)                                                  11.6    2.9
+CAF                     GHC.IO.Encoding.Iconv          <entire-module>                                                         2.3    0.0
+hash                    Main                           Ej3.hs:9:1-42                                                           1.6   12.3
+unstreamChunks/resize   Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(81,72)-(85,38)    0.0    1.5
+encodeLazy.onlyAscii    Main                           Ej3.hs:44:7-58                                                          0.0    1.6
+
+
+                                                                                                                                                     individual      inherited
+COST CENTRE                   MODULE                         SRC                                                                  no.     entries  %time %alloc   %time %alloc
+
+MAIN                          MAIN                           <built-in>                                                           212           0    0.0    0.0   100.0  100.0
+ CAF                          Main                           <entire-module>                                                      423           0    0.0    0.0     0.0    0.0
+  main                        Main                           Ej3.hs:(51,1)-(52,58)                                                424           1    0.0    0.0     0.0    0.0
+   encodeLazy                 Main                           Ej3.hs:(39,1)-(48,48)                                                425           1    0.0    0.0     0.0    0.0
+ CAF                          GHC.Conc.Signal                <entire-module>                                                      324           0    0.0    0.0     0.0    0.0
+ CAF                          GHC.IO.Encoding                <entire-module>                                                      306           0    0.0    0.0     0.0    0.0
+ CAF                          GHC.IO.Encoding.Iconv          <entire-module>                                                      304           0    2.3    0.0     2.3    0.0
+ CAF                          GHC.IO.Exception               <entire-module>                                                      298           0    0.0    0.0     0.0    0.0
+ CAF                          GHC.IO.FD                      <entire-module>                                                      297           0    0.0    0.0     0.0    0.0
+ CAF                          GHC.IO.Handle.FD               <entire-module>                                                      295           0    0.0    0.0     0.0    0.0
+ CAF                          GHC.IO.Handle.Internals        <entire-module>                                                      294           0    0.0    0.0     0.0    0.0
+ main                         Main                           Ej3.hs:(51,1)-(52,58)                                                426           0    0.0    0.0    97.7  100.0
+  encodeLazy                  Main                           Ej3.hs:(39,1)-(48,48)                                                427           0   11.6    2.9    97.7  100.0
+   readTextDevice             Data.Text.Internal.IO          libraries/text/src/Data/Text/Internal/IO.hs:133:39-64                429         519    0.8    0.2     0.8    0.2
+   encodeLazy.allLowerCase    Main                           Ej3.hs:47:7-52                                                       439           1   37.2    0.8    37.2    0.8
+   encodeLazy.allUperCase     Main                           Ej3.hs:45:7-51                                                       433           1   31.8    0.8    31.8    0.8
+   encodeLazy.onlyAscii       Main                           Ej3.hs:44:7-58                                                       432           1    0.0    1.6     0.0    1.6
+   encodeLazy.p               Main                           Ej3.hs:41:7-30                                                       428           1    0.0    0.0     0.0    0.0
+   encodeLazy.removeFirstChar Main                           Ej3.hs:42:7-44                                                       430           1    0.0    0.0     0.0    0.0
+   encodeLazy.removedLastChar Main                           Ej3.hs:43:7-54                                                       431           1    0.0    0.0     0.0    0.0
+   encodeLazy.superHash       Main                           Ej3.hs:46:7-69                                                       434           1    0.0    0.0    16.3   93.7
+    unstreamChunks/outer      Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(71,15)-(77,43) 435          64    0.0    0.0    16.3   93.7
+     unstreamChunks/resize    Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(81,72)-(85,38) 436         754    0.0    1.5    16.3   93.6
+      unstreamChunks/inner    Data.Text.Internal.Lazy.Fusion libraries/text/src/Data/Text/Internal/Lazy/Fusion.hs:(88,17)-(92,59) 437     1016843   14.7   79.8    16.3   92.1
+       hash                   Main                           Ej3.hs:9:1-42                                                        438     1016842    1.6   12.3     1.6   12.3
+     hash                     Main                           Ej3.hs:9:1-42                                                        440          62    0.0    0.0     0.0    0.0
