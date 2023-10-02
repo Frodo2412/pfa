@@ -2,8 +2,6 @@
 -- EDSL
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 
-import System.Console.Terminfo (Color)
-
 {-# HLINT ignore "Use camelCase" #-}
 class EDSL_Markup m where
   -- PartAB
@@ -43,7 +41,7 @@ instance EDSL_Markup SMarkup where
 
 type SLength = Int
 
--- Part B: Toda la clase tuvo que ser reimplementada para poder contar la cantidad de palabras
+-- Part C(A): Toda la clase tuvo que ser reimplementada para poder contar la cantidad de palabras
 instance EDSL_Markup SLength where
   text txt = length $ words txt
   bold txt = txt
@@ -110,7 +108,7 @@ instance EDSL_Markup DMarkup where
       ++ generate markup
       ++ "</span>"
 
-  -- PartB: Simplemente se agrega un nuevo interpretexx que cuenta la cantidad de palabras
+  -- PartC(B): Simplemente se agrega un nuevo interprete que cuenta la cantidad de palabras.
   generateB :: DMarkup -> Int
   generateB (Text str) = length $ words str
   generateB (Bold markup) = generateB markup
@@ -123,26 +121,50 @@ instance EDSL_Markup DMarkup where
   generateB (markup1 :<+> markup2) = generateB markup1 + generateB markup2
 
 -- Ejemplos
-ex1 :: SMarkup
-ex1 = text "hola soy un texto sin formato"
+ex1Shallow :: SMarkup 
+ex1Shallow = text "hola soy un texto sin formato"
 
-ex2 :: SMarkup
-ex2 = bold (text "hola soy bold") <+> (underline . bold $ text "y subrayado")
+ex2Shallow :: SMarkup
+ex2Shallow = bold (text "hola soy bold") <+> (underline . bold $ text "y subrayado")
 
-ex3 :: SMarkup
-ex3 =
-  ex1
-    <-> size 35 (ex2 <+> text "y grande")
+ex3Shallow :: SMarkup
+ex3Shallow =
+  ex1Shallow
+    <-> size 35 (ex2Shallow <+> text "y grande")
     <-> text "consultar en:"
     <+> url "http://www.google.com" (bold $ text "Google")
 
-ex4 :: SMarkup
-ex4 =
+ex4Shallow :: SMarkup
+ex4Shallow =
   text "la lista es:"
-    <+> list [ex1, ex2, italics $ text "y nada mas"]
+    <+> list [ex1Shallow, ex2Shallow, italics $ text "y nada mas"]
 
-ex5 :: SMarkup
-ex5 =
+ex5Shallow :: SMarkup
+ex5Shallow =
+  bold (text "Hola")
+    <+> color 255 0 0 (text "soy un texto en rojo")
+    <+> text "pero se me pasa."
+
+ex1Deep :: DMarkup 
+ex1Deep = text "hola soy un texto sin formato"
+
+ex2Deep :: DMarkup
+ex2Deep = bold (text "hola soy bold") <+> (underline . bold $ text "y subrayado")
+
+ex3Deep :: DMarkup
+ex3Deep =
+  ex1Deep
+    <-> size 35 (ex2Deep <+> text "y grande")
+    <-> text "consultar en:"
+    <+> url "http://www.google.com" (bold $ text "Google")
+
+ex4Deep :: DMarkup
+ex4Deep =
+  text "la lista es:"
+    <+> list [ex1Deep, ex2Deep, italics $ text "y nada mas"]
+
+ex5Deep :: DMarkup
+ex5Deep =
   bold (text "Hola")
     <+> color 255 0 0 (text "soy un texto en rojo")
     <+> text "pero se me pasa."
@@ -166,11 +188,16 @@ ex4Length =
     <+> list [ex1Length, ex2Length, italics $ text "y nada mas"]
 
 main = do
-  writeFile "out/shallowS/ex1.html" (generate ex1)
-  writeFile "out/shallowS/ex2.html" (generate ex2)
-  writeFile "out/shallowS/ex3.html" (generate ex3)
-  writeFile "out/shallowS/ex4.html" (generate ex4)
-  writeFile "out/shallowS/ex5.html" (generate ex5)
+  writeFile "out/shallowS/ex1.html" $ generate ex1Shallow
+  writeFile "out/shallowS/ex2.html" $ generate ex2Shallow
+  writeFile "out/shallowS/ex3.html" $ generate ex3Shallow
+  writeFile "out/shallowS/ex4.html" $ generate ex4Shallow
+  writeFile "out/shallowS/ex5.html" $ generate ex5Shallow
+  writeFile "out/deepD/ex1.html" $ generate ex1Deep
+  writeFile "out/deepD/ex2.html" $ generate ex2Deep
+  writeFile "out/deepD/ex3.html" $ generate ex3Deep
+  writeFile "out/deepD/ex4.html" $ generate ex4Deep
+  writeFile "out/deepD/ex5.html" $ generate ex5Deep
   print $ generateB ex1Length
   print $ generateB ex2Length
   print $ generateB ex3Length

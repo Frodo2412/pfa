@@ -78,11 +78,13 @@ zipWithR f (Repr next1 s1) (Repr next2 s2) = Repr next' (s1, s2)
       (Just (x, r1), Just (y, r2)) -> Just (f x y, (r1, r2))
 
 tailsR :: Repr a -> Repr (Repr a)
-tailsR (Repr next s) = Repr next' s
+tailsR (Repr next s) = Repr next' (Just (s,Just (Nothing,Nothing)))
   where
-    next' s = case next s of
-      Nothing -> Just (Repr (const Nothing) s, s)
-      Just (x, r) -> Just (Repr next r, r)
+    next' (Nothing)           = Nothing
+    next' (Just (xs,Nothing)) = Nothing
+    next' (Just (xs,_))       = case next xs of
+                        Nothing     -> Just (Repr next xs,Just (xs,Nothing))
+                        Just (x, r) -> Just (Repr next xs, Just(r,Just(Nothing,Nothing)))
 
 evensR :: Repr a -> Repr a
 evensR (Repr next s) = Repr next' s
@@ -135,12 +137,14 @@ zipWithS f (Stream next1 s1) (Stream next2 s2) = Stream next' (s1, s2)
       (_, Skip s2') -> Skip (sa, s2')
 
 tailsS :: Stream a -> Stream (Stream a)
-tailsS (Stream next s) = Stream next' s
+tailsS (Stream next s) = Stream next' (Yield s (Yield Done Done))
   where
-    next' s = case next s of
-      Done -> Yield (Stream (const Done) s) s
-      Yield a s' -> Yield (Stream next s') s'
-      Skip s' -> Skip s'
+    next' (Done)         = Done
+    next' (Yield _ Done) = Done
+    next' (Yield xs _)   = case next xs of
+                        Done      -> Yield (Stream next xs) Done
+                        Yield x r -> Yield (Stream next xs) (Yield r (Yield Done Done))
+                        Skip xs'  -> next' (Yield xs (Yield Done Done))
 
 evensS :: Stream a -> Stream a
 evensS (Stream next s) = Stream next' s

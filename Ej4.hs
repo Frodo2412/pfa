@@ -53,8 +53,9 @@ a3 =
 -- Parte (c1)
 
 -- El problema con cant es que no se puede saber la cantidad de valores hasta evaluar los nodos, la cantidad
--- de Succ que aparecen puede dar una estimación, pero al tener la opcion de 1 o 2 valores dependiendo
--- si se utiliza Node2 o Node3 no es posible saber la cantidad exacta evaluando unicamente los (Tree t a).
+-- de Succ que aparecen puede dar una estimación, pero al tener la opción de 1 o 2 valores dependiendo
+-- si se utiliza Node2 o Node3 no es posible saber la cantidad exacta evaluando únicamente los (Tree t a),
+-- se precisaría hacer un pattern matching infinito lo cual no es viable.
 
 -- Parte (c2)
 
