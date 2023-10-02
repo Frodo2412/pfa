@@ -1,3 +1,7 @@
+# Aviso:
+
+Los archivos ejecutables y los encoding del texto son dejados afuera de la entrega dado que los tamaños de los mismos sobrepasan el tamaño máximo del archivo a entregar, si se desea compilar y ejecutar se deberá copiar el archivo `el_quijote.txt` en la carpeta correspondiente a ejecutar.
+
 # Resultados del profiling:
 
 Al realizar el heap profiling de las distintas versiones del programa obtuvimos los siguientes resultados. Para estas pruebas se utilizo el archivo de texto `el_quijote.txt` provisto en el EVA.
