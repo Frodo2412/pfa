@@ -94,5 +94,5 @@ module Main where
             let exp = fst $ head $ (runP parserEXPR) str
             let result = evalE exp
             case result of
-                Left error -> putStrLn $ "Error: " ++ show error
-                Right value -> putStrLn $ "Resultado: " ++ show value
+                Left error -> putStrLn $ show error
+                Right value -> putStrLn $ show value
