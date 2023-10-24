@@ -80,3 +80,7 @@ module Parser where
     word :: Parser String
     word = pList1 (pSat p)
         where p c = isAlphaNum c
+
+    space :: Parser String
+    space = pList (pSat p)
+        where p c = isSpace c

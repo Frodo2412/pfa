@@ -18,25 +18,38 @@ module Main where
     parserEXPR = do pSym 'l'
                     pSym 'e'
                     pSym 't'
+                    space
                     var <- word
+                    space
                     pSym '='
+                    space
                     ass <- parserEXPR
+                    space
                     pSym 'i'
                     pSym 'n'
+                    space
                     app <- parserEXPR
                     return (Let var ass app)
                 <|>
                 do  pSym '('
+                    space
                     e1add <- parserEXPR
+                    space
                     pSym '+'
+                    space
                     e2add <- parserEXPR
+                    space
                     pSym ')'
                     return (Add e1add e2add)
                 <|>
                 do  pSym '('
+                    space
                     e1div <- parserEXPR
+                    space
                     pSym '/'
+                    space
                     e2div <- parserEXPR
+                    space
                     pSym ')'
                     return (Div e1div e2div)
                 <|>
