@@ -32,10 +32,12 @@ data Vec a n where
   Nil :: Vec a Zero
   Cons :: a -> Vec a n -> Vec a (Succ n)
 
-data Ret n where
-    IsEmpty :: Zero -> Ret Empty
-    IsNotEmpty :: Succ n -> Ret NonEmpty 
+type family Null (m :: *)
 
-vec2safe :: Vec a n -> SafeList a (Ret n)
+type instance Null Zero = Empty
+
+type instance Null (Succ _) = NonEmpty
+
+vec2safe :: Vec a n -> SafeList a (Null n)
 vec2safe Nil = NilS
 vec2safe (Cons x xs) = ConsS x (vec2safe xs)
